@@ -1,5 +1,5 @@
 import pytest
-from student import StudentList
+from assingment.py import StudentList
 
 
 # ---------- Test add_student + show_all ----------
