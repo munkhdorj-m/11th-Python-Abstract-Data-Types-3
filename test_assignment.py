@@ -1,5 +1,5 @@
 import pytest
-from assignment import StudentList
+from assignment import StudentLinkedList
 
 
 # ---------- Test add_student + show_all ----------
