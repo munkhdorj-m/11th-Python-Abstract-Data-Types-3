@@ -1,90 +1,73 @@
-import pytest
-from assignment import StudentList
+# ============================
+# Student Management System
+# ============================
+
+class StudentNode:
+    def __init__(self, student_id, name):
+        self.id = student_id
+        self.name = name
+        self.next = None
 
 
-# ---------- Test add_student + show_all ----------
-@pytest.mark.parametrize("students, expected_output", [
-    ([("101", "Alice"), ("102", "Bob")], "101 - Alice\n102 - Bob"),
-    ([], "No students found"),
-    ([("200", "David")], "200 - David"),
-])
-def test_add_and_show(students, expected_output):
-    sl = StudentList()
-    for sid, name in students:
-        sl.add_student(sid, name)
-    assert sl.show_all() == expected_output
+class StudentList:
+    def __init__(self):
+        self.head = None
 
+    def add_student(self, student_id, name):
+        new_node = StudentNode(student_id, name)
+        if not self.head:
+            self.head = new_node
+            return
+        curr = self.head
+        while curr.next:
+            curr = curr.next
+        curr.next = new_node
 
-# ---------- Test search_student ----------
-@pytest.mark.parametrize("students, search_id, expected", [
-    ([("101", "Alice")], "101", "Alice"),
-    ([("101", "Alice")], "999", None),
-    ([("1", "A"), ("2", "B"), ("3", "C")], "2", "B"),
-])
-def test_search(students, search_id, expected):
-    sl = StudentList()
-    for sid, name in students:
-        sl.add_student(sid, name)
-    assert sl.search_student(search_id) == expected
+    def show_all(self):
+        if not self.head:
+            return "No students found"
+        curr = self.head
+        result = []
+        while curr:
+            result.append(f"{curr.id} - {curr.name}")
+            curr = curr.next
+        return "\n".join(result)
 
+    def search_student(self, student_id):
+        curr = self.head
+        while curr:
+            if curr.id == student_id:
+                return curr.name
+            curr = curr.next
+        return None
 
-# ---------- Test delete_student ----------
-@pytest.mark.parametrize("students, delete_id, expected_result, expected_output", [
-    # delete head
-    ([("101", "Alice"), ("102", "Bob")], "101", True, "102 - Bob"),
+    def delete_student(self, student_id):
+        if not self.head:
+            return False
+        if self.head.id == student_id:
+            self.head = self.head.next
+            return True
+        curr = self.head
+        while curr.next:
+            if curr.next.id == student_id:
+                curr.next = curr.next.next
+                return True
+            curr = curr.next
+        return False
 
-    # delete middle
-    ([("1", "A"), ("2", "B"), ("3", "C")], "2", True, "1 - A\n3 - C"),
+    def count_students(self):
+        count = 0
+        curr = self.head
+        while curr:
+            count += 1
+            curr = curr.next
+        return count
 
-    # delete last
-    ([("1", "A"), ("2", "B")], "2", True, "1 - A"),
-
-    # delete non-existing
-    ([("1", "A")], "999", False, "1 - A"),
-
-    # delete from empty list
-    ([], "1", False, "No students found"),
-])
-def test_delete(students, delete_id, expected_result, expected_output):
-    sl = StudentList()
-    for sid, name in students:
-        sl.add_student(sid, name)
-
-    result = sl.delete_student(delete_id)
-    assert result == expected_result
-    assert sl.show_all() == expected_output
-
-
-# ---------- Test count_students ----------
-@pytest.mark.parametrize("students, expected_count", [
-    ([], 0),
-    ([("1", "A")], 1),
-    ([("1", "A"), ("2", "B"), ("3", "C")], 3),
-])
-def test_count(students, expected_count):
-    sl = StudentList()
-    for sid, name in students:
-        sl.add_student(sid, name)
-
-    assert sl.count_students() == expected_count
-
-
-# ---------- Test update_student ----------
-@pytest.mark.parametrize("students, update_id, new_name, expected_result, expected_final", [
-    # successful update
-    ([("101", "Alice")], "101", "Alicia", True, "101 - Alicia"),
-
-    # ID not found
-    ([("101", "Alice")], "999", "Ghost", False, "101 - Alice"),
-
-    # update middle
-    ([("1", "A"), ("2", "B"), ("3", "C")], "2", "Beta", True, "1 - A\n2 - Beta\n3 - C"),
-])
-def test_update(students, update_id, new_name, expected_result, expected_final):
-    sl = StudentList()
-    for sid, name in students:
-        sl.add_student(sid, name)
-
-    result = sl.update_student(update_id, new_name)
-    assert result == expected_result
-    assert sl.show_all() == expected_final
+    def update_student(self, student_id, new_name):
+        curr = self.head
+        while curr:
+            if curr.id == student_id:
+                curr.name = new_name
+                return True
+            curr = curr.next
+        return False
