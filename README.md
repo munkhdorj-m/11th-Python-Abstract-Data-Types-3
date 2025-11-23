@@ -15,8 +15,7 @@ https://drive.google.com/file/d/1jXGQdSvuUYjGXl-PUuHMUzKWEBGQoARL/view?usp=shari
 Implement a Student Management System **using Linked List**, not Python lists.
 
 You will create:
-- A `StudentNode` class   
-- `StudentNode` contains `id` and `name`   
+- A `StudentNode` class. `StudentNode` contains `id` and `name`   
 - A `StudentList` (Linked List) class    
 - A menu-based program (`main.py`) that uses the linked list      
 
