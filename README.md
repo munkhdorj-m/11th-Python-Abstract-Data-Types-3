@@ -36,8 +36,13 @@ Your linked list must support:
        2 - Bob
 
 Bonus points for:
-1. `count_students()`
-2. `update_student(id, new_name)`
+1. `count_students()`:
+    Returns the total number of students currently in the linked list.
+       
+2. `update_student(id, new_name)`:  
+    Searches for a student by their id.   
+    If found, updates the student's name to new_name.   
+    
 
 Example:
 
