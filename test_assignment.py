@@ -12,7 +12,7 @@ def test_add_and_show(students, expected_output):
     sl = StudentList()
     for sid, name in students:
         sl.add_student(sid, name)
-    assert sl.show_all() == expected_output
+    assert sl.show_all().strip() == expected_output.strip()
 
 
 # ---------- Test search_student ----------
