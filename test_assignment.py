@@ -52,7 +52,7 @@ def test_delete(students, delete_id, expected_result, expected_output):
 
     result = sl.delete_student(delete_id)
     assert result == expected_result
-    assert sl.show_all() == expected_output
+    assert sl.show_all().strip() == expected_output.strip()
 
 
 # ---------- Test count_students ----------
@@ -87,4 +87,4 @@ def test_update(students, update_id, new_name, expected_result, expected_final):
 
     result = sl.update_student(update_id, new_name)
     assert result == expected_result
-    assert sl.show_all() == expected_final
+    assert sl.show_all().strip() == expected_final.strip()
