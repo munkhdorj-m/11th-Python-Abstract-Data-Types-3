@@ -18,47 +18,42 @@ class StudentList:
         if not self.head:
             self.head = new_node
             return
-
         curr = self.head
         while curr.next:
             curr = curr.next
         curr.next = new_node
 
-    def delete_student(self, student_id):
+    def show_all(self):
         if not self.head:
-            return
-
-        if self.head.id == student_id:
-            self.head = self.head.next
-            return
-
+            return "No students found"
         curr = self.head
-        while curr.next:
-            if curr.next.id == student_id:
-                curr.next = curr.next.next
-                return
+        result = []
+        while curr:
+            result.append(f"{curr.id} - {curr.name}")
             curr = curr.next
+        return "\n".join(result)
 
     def search_student(self, student_id):
         curr = self.head
         while curr:
             if curr.id == student_id:
+                return curr.name
+            curr = curr.next
+        return None
+
+    def delete_student(self, student_id):
+        if not self.head:
+            return False
+        if self.head.id == student_id:
+            self.head = self.head.next
+            return True
+        curr = self.head
+        while curr.next:
+            if curr.next.id == student_id:
+                curr.next = curr.next.next
                 return True
             curr = curr.next
         return False
-
-    def show_students(self):
-        if not self.head:
-            return "No students"
-
-        curr = self.head
-        result = []
-        i = 1
-        while curr:
-            result.append(f"{i}. {curr.name} (ID: {curr.id})")
-            curr = curr.next
-            i += 1
-        return "\n".join(result)
 
     def count_students(self):
         count = 0
