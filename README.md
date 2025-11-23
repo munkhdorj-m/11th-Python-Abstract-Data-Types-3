@@ -1,4 +1,4 @@
-# Abstract Data Types 2
+# Abstract Data Types 3
 
 Abstract Data Types PDF:
 
@@ -11,33 +11,49 @@ https://drive.google.com/file/d/1jXGQdSvuUYjGXl-PUuHMUzKWEBGQoARL/view?usp=shari
 
 **Problem:**
  
-**Linked List Music Playlist**      
-Create a SongNode and a LinkedList playlist.   
+**Student Management System (Linked List):**    
+Implement a Student Management System **using Linked List**, not Python lists.
 
-Each node stores:   
--title     
--artist    
+You will create:
+- A `StudentNode` class   
+- StudentNode contains id and name   
+- A `StudentList` (Linked List) class    
+- A menu-based program (`main.py`) that uses the linked list      
 
 Your linked list must support:   
--add_song(title, artist) → insert at end     
--delete_song(title) → delete first matching title    
--show_playlist() → numbered list           
--count_songs() → return number of tracks    
+1. **add_student(id, name)**    
+   Insert at the *end* of the linked list.  
+  
+2. **delete_student(id)**    
+   Remove the student with matching ID.    
+   Return `True` if found & deleted, else `False`.  
+    
+3. **search_student(id)**    
+   Return the student’s name if found, else `None`.  
+  
+4. **show_all()**    
+   Return all students in this format:
+   
+       1 - Alice
+       2 - Bob
 
-Write a program that:
-1. Adds these songs:  
-"Imagine" - John Lennon 
-"Numb" - Linkin Park  
-"Hey Jude" - The Beatles" 
-2. Deletes "Numb"    
-3. Prints the playlist and number of songs  
+Bonus points for:
+1. `count_students()`
+2. `update_student(id, new_name)`
 
 Example:
 
+    Input:
+       ll = StudentLinkedList()
+       ll.add_student(1, "Alice")
+       ll.add_student(2, "Bob")
+       ll.add_student(3, "Charlie")
+       ll.delete_student(2)
+       print(ll.show_students())
     Output:
-       1. Imagine - John Lennon
-       2. Hey Jude - The Beatles
-       Total songs: 2
+       1 - Alice
+       3 - Charlie
+
       
 
 ---
