@@ -52,7 +52,7 @@ Example:
        ll.add_student(2, "Bob")
        ll.add_student(3, "Charlie")
        ll.delete_student(2)
-       print(ll.show_students())
+       print(ll.show_all())
     Output:
        1 - Alice
        3 - Charlie
