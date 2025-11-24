@@ -27,7 +27,7 @@ Your linked list must support:
    Return `True` if found & deleted, else `False`.  
     
 3. **search_student(id)**    
-   Return the student’s name if found, else `None`.  
+   Return the student’s name if found, else `False`.  
   
 4. **show_all()**    
    Return all students in this format:
